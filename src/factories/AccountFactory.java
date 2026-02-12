@@ -1,5 +1,6 @@
 package factories;
 
+import exceptions.InvalidAccountTypeException;
 import models.Account;
 import models.CurrentAccount;
 import models.SavingsAccount;
@@ -14,7 +15,7 @@ public class AccountFactory {
     Number balance,
     String accountNumber,
     double interestRate
-  ) {
+  ) throws InvalidAccountTypeException {
     if (accountType.equalsIgnoreCase("savings")) {
       return new SavingsAccount(
         ownerFirstName,
@@ -34,7 +35,7 @@ public class AccountFactory {
         interestRate
       );
     } else {
-      throw new IllegalArgumentException(
+      throw new InvalidAccountTypeException(
         "Invalid account type: " + accountType
       );
     }
