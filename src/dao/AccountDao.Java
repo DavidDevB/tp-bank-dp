@@ -21,10 +21,24 @@ public class AccountDao {
     ) {
       while (rs.next()) {
         int id = rs.getInt("id");
+        String ownerFirstName = rs.getString("ownerFirstName");
+        String ownerLastName = rs.getString("ownerLastName");
+        String creationDate = rs.getString("creationDate");
         String accountNumber = rs.getString("accountNumber");
         double balance = rs.getDouble("balance");
         int clientId = rs.getInt("fk_client_id");
-        Account account = new Account(id, accountNumber, balance, clientId);
+        String state = rs.getString("state");
+        Account account = new Account(
+          ownerFirstName,
+          ownerLastName,
+          creationDate,
+          balance,
+          accountNumber,
+          state,
+          clientId,
+          id
+        );
+        account.setState(state);
         accounts.add(account);
       }
     } catch (SQLException e) {
@@ -42,10 +56,25 @@ public class AccountDao {
       ps.setInt(1, id);
       ResultSet rs = ps.executeQuery();
       if (rs.next()) {
+        String ownerFirstName = rs.getString("ownerFirstName");
+        String ownerLastName = rs.getString("ownerLastName");
+        String creationDate = rs.getString("creationDate");
         String accountNumber = rs.getString("accountNumber");
         double balance = rs.getDouble("balance");
         int clientId = rs.getInt("fk_client_id");
-        return new Account(id, accountNumber, balance, clientId);
+        String state = rs.getString("state");
+        Account account = new Account(
+          ownerFirstName,
+          ownerLastName,
+          creationDate,
+          balance,
+          accountNumber,
+          state,
+          clientId,
+          id
+        );
+        account.setState(state);
+        return account;
       }
     } catch (SQLException e) {
       System.out.println("Error reading account: " + e.getMessage());
@@ -64,7 +93,7 @@ public class AccountDao {
       ps.setDouble(2, account.getBalance());
       ps.setInt(3, account.getClientId());
       ps.setDate(4, new java.sql.Date(System.currentTimeMillis()));
-      ps.setString(5, "active");
+      ps.setString(5, account.getState());
       int rowsAffected = ps.executeUpdate();
       return rowsAffected > 0;
     } catch (SQLException e) {
@@ -84,7 +113,7 @@ public class AccountDao {
       ps.setDouble(2, account.getBalance());
       ps.setInt(3, account.getClientId());
       ps.setDate(4, new java.sql.Date(System.currentTimeMillis()));
-      ps.setString(5, "active");
+      ps.setString(5, account.getState());
       ps.setInt(6, account.getId());
       int rowsAffected = ps.executeUpdate();
       return rowsAffected > 0;

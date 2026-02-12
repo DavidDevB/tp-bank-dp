@@ -1,57 +1,93 @@
 package models;
 
 public class Account {
-    private String ownerFirstName;
-    private String ownerLastName;
-    private String creationDate;
-    private Number balance;
-    private String accountNumber;
 
-    public Account(String ownerFirstName, String ownerLastName, String creationDate, Number balance, String accountNumber) {
-        this.ownerFirstName = ownerFirstName;
-        this.ownerLastName = ownerLastName;
-        this.creationDate = creationDate;
-        this.balance = balance;
-        this.accountNumber = accountNumber;
-    }
+  private String ownerFirstName;
+  private String ownerLastName;
+  private String creationDate;
+  private double balance;
+  private String accountNumber;
+  private String state;
+  private final int id;
+  private int clientId;
 
-    public String getOwnerFirstName() {
-        return ownerFirstName;
-    }
+  public Account(
+    String ownerFirstName,
+    String ownerLastName,
+    String creationDate,
+    double balance,
+    String accountNumber,
+    String state,
+    int clientId,
+    int id
+  ) {
+    this.ownerFirstName = ownerFirstName;
+    this.ownerLastName = ownerLastName;
+    this.creationDate = creationDate;
+    this.balance = balance;
+    this.accountNumber = accountNumber;
+    this.state = state;
+    this.clientId = clientId;
+    this.id = id;
+  }
 
-    public void setOwnerFirstName(String ownerFirstName) {
-        this.ownerFirstName = ownerFirstName;
-    }
+  public String getOwnerFirstName() {
+    return ownerFirstName;
+  }
 
-    public String getOwnerLastName() {
-        return ownerLastName;
-    }
+  public void setOwnerFirstName(String ownerFirstName) {
+    this.ownerFirstName = ownerFirstName;
+  }
 
-    public void setOwnerLastName(String ownerLastName) {
-        this.ownerLastName = ownerLastName;
-    }
+  public String getOwnerLastName() {
+    return ownerLastName;
+  }
 
-    public String getCreationDate() {
-        return creationDate;
-    }
+  public void setOwnerLastName(String ownerLastName) {
+    this.ownerLastName = ownerLastName;
+  }
 
-    public void setCreationDate(String creationDate) {
-        this.creationDate = creationDate;
-    }
+  public String getCreationDate() {
+    return creationDate;
+  }
 
-    public Number getBalance() {
-        return balance;
-    }
+  public void setCreationDate(String creationDate) {
+    this.creationDate = creationDate;
+  }
 
-    public void setBalance(Number balance) {
-        this.balance = balance;
-    }
+  public double getBalance() {
+    return balance;
+  }
 
-    public String getAccountNumber() {
-        return accountNumber;
-    }
+  public void setBalance(double balance) {
+    this.balance = balance;
+  }
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
+  public String getAccountNumber() {
+    return accountNumber;
+  }
+
+  public void setAccountNumber(String accountNumber) {
+    this.accountNumber = accountNumber;
+  }
+
+  public String getState() {
+    return state;
+  }
+
+  public void setState(String state) {
+    this.state = state;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public int getClientId() {
+    return clientId;
+  }
+
+  public void setClientId(int clientId) {
+    this.clientId = clientId;
+  }
 }
