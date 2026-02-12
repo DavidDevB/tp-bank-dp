@@ -32,4 +32,20 @@ public class AccountService {
 
     return account;
   }
+
+  public void freezeAccount(int accountId) {
+    Account account = AccountDao.read(accountId);
+    if (account != null) {
+      account.setState("frozen");
+      AccountDao.update(account);
+    }
+  }
+
+  public void closeAccount(int accountId) {
+    Account account = AccountDao.read(accountId);
+    if (account != null) {
+      account.setState("closed");
+      AccountDao.update(account);
+    }
+  }
 }
