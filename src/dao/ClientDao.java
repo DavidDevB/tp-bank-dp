@@ -25,11 +25,21 @@ public class ClientDao {
     return false;
   }
 
-  public void addClient(String email, String name) throws SQLException {
-    String query = "INSERT INTO clients (email, name) VALUES (?, ?)";
+  public void addClient(
+    String firstName,
+    String lastName,
+    String birthDate,
+    String email,
+    String address
+  ) throws SQLException {
+    String query =
+      "INSERT INTO clients (firstName, lastName, birthDate, email, address) VALUES (?, ?, ?, ?, ?)";
     try (PreparedStatement stmt = connection.prepareStatement(query)) {
-      stmt.setString(1, email);
-      stmt.setString(2, name);
+      stmt.setString(1, firstName);
+      stmt.setString(2, lastName);
+      stmt.setString(3, birthDate);
+      stmt.setString(4, email);
+      stmt.setString(5, address);
       stmt.executeUpdate();
     }
   }
@@ -46,12 +56,21 @@ public class ClientDao {
     return null;
   }
 
-  public void updateClientName(String email, String newName)
-    throws SQLException {
-    String query = "UPDATE clients SET name = ? WHERE email = ?";
+  public void updateClient(
+    String email,
+    String newFirstName,
+    String newLastName,
+    String newBirthDate,
+    String newAddress
+  ) throws SQLException {
+    String query =
+      "UPDATE clients SET firstName = ?, lastName = ?, birthDate = ?, address = ? WHERE email = ?";
     try (PreparedStatement stmt = connection.prepareStatement(query)) {
-      stmt.setString(1, newName);
-      stmt.setString(2, email);
+      stmt.setString(1, newFirstName);
+      stmt.setString(2, newLastName);
+      stmt.setString(3, newBirthDate);
+      stmt.setString(4, newAddress);
+      stmt.setString(5, email);
       stmt.executeUpdate();
     }
   }
