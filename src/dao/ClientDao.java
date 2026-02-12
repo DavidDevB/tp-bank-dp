@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +29,7 @@ public class ClientDao {
   public void addClient(
     String firstName,
     String lastName,
-    String birthDate,
+    Date birthDate,
     String email,
     String address
   ) throws SQLException {
@@ -37,7 +38,7 @@ public class ClientDao {
     try (PreparedStatement stmt = connection.prepareStatement(query)) {
       stmt.setString(1, firstName);
       stmt.setString(2, lastName);
-      stmt.setString(3, birthDate);
+      stmt.setDate(3, birthDate);
       stmt.setString(4, email);
       stmt.setString(5, address);
       stmt.executeUpdate();
@@ -60,7 +61,7 @@ public class ClientDao {
     String email,
     String newFirstName,
     String newLastName,
-    String newBirthDate,
+    Date newBirthDate,
     String newAddress
   ) throws SQLException {
     String query =
@@ -68,7 +69,7 @@ public class ClientDao {
     try (PreparedStatement stmt = connection.prepareStatement(query)) {
       stmt.setString(1, newFirstName);
       stmt.setString(2, newLastName);
-      stmt.setString(3, newBirthDate);
+      stmt.setDate(3, newBirthDate);
       stmt.setString(4, newAddress);
       stmt.setString(5, email);
       stmt.executeUpdate();

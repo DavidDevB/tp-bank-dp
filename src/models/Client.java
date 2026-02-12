@@ -1,17 +1,19 @@
 package models;
 
+import java.sql.Date;
+
 public class Client {
 
   private String firstName;
   private String lastName;
-  private String birthDate;
+  private Date birthDate;
   private String email;
   private String address;
 
   public Client(
     String firstName,
     String lastName,
-    String birthDate,
+    Date birthDate,
     String email,
     String address
   ) {
