@@ -55,7 +55,7 @@ public class AccountDao {
 
   public static boolean create(Account account) {
     String query =
-      "INSERT INTO accounts (accountNumber, balance, fk_client_id) VALUES (?, ?, ?)";
+      "INSERT INTO accounts (accountNumber, balance, fk_client_id, creationDate, state) VALUES (?, ?, ?, ?, ?)";
     try (
       Connection connection = DBConnection.getConnection();
       PreparedStatement ps = connection.prepareStatement(query)
@@ -63,6 +63,8 @@ public class AccountDao {
       ps.setString(1, account.getAccountNumber());
       ps.setDouble(2, account.getBalance());
       ps.setInt(3, account.getClientId());
+      ps.setDate(4, new java.sql.Date(System.currentTimeMillis()));
+      ps.setString(5, "active");
       int rowsAffected = ps.executeUpdate();
       return rowsAffected > 0;
     } catch (SQLException e) {
@@ -73,7 +75,7 @@ public class AccountDao {
 
   public static boolean update(Account account) {
     String query =
-      "UPDATE accounts SET accountNumber = ?, balance = ?, fk_client_id = ? WHERE id = ?";
+      "UPDATE accounts SET accountNumber = ?, balance = ?, fk_client_id = ?, creationDate = ?, state = ? WHERE id = ?";
     try (
       Connection connection = DBConnection.getConnection();
       PreparedStatement ps = connection.prepareStatement(query)
@@ -81,7 +83,9 @@ public class AccountDao {
       ps.setString(1, account.getAccountNumber());
       ps.setDouble(2, account.getBalance());
       ps.setInt(3, account.getClientId());
-      ps.setInt(4, account.getId());
+      ps.setDate(4, new java.sql.Date(System.currentTimeMillis()));
+      ps.setString(5, "active");
+      ps.setInt(6, account.getId());
       int rowsAffected = ps.executeUpdate();
       return rowsAffected > 0;
     } catch (SQLException e) {
