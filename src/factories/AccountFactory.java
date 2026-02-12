@@ -8,13 +8,17 @@ import models.SavingsAccount;
 public class AccountFactory {
 
   public static Account createAccount(
-    String accountType,
     String ownerFirstName,
     String ownerLastName,
     String creationDate,
-    Number balance,
+    double balance,
     String accountNumber,
-    double interestRate
+    String state,
+    int clientId,
+    int id,
+    String accountType,
+    double interestRate,
+    int overdraftLimit
   ) throws InvalidAccountTypeException {
     if (accountType.equalsIgnoreCase("savings")) {
       return new SavingsAccount(
@@ -23,6 +27,9 @@ public class AccountFactory {
         creationDate,
         balance,
         accountNumber,
+        state,
+        clientId,
+        id,
         interestRate
       );
     } else if (accountType.equalsIgnoreCase("current")) {
@@ -32,7 +39,10 @@ public class AccountFactory {
         creationDate,
         balance,
         accountNumber,
-        interestRate
+        state,
+        clientId,
+        id,
+        overdraftLimit
       );
     } else {
       throw new InvalidAccountTypeException(

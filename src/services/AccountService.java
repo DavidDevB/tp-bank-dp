@@ -8,25 +8,33 @@ import models.Account;
 public class AccountService {
 
   public Account openAccount(
-    String accountType,
     String ownerFirstName,
     String ownerLastName,
     String creationDate,
-    Number balance,
+    double balance,
     String accountNumber,
-    double interestRate
+    String state,
+    int clientId,
+    int id,
+    String accountType,
+    double interestRate,
+    int overdraftLimit
   ) throws InvalidAccountTypeException {
     Account account = AccountFactory.createAccount(
-      accountType,
       ownerFirstName,
       ownerLastName,
       creationDate,
       balance,
       accountNumber,
-      interestRate
+      state,
+      clientId,
+      id,
+      accountType,
+      interestRate,
+      overdraftLimit
     );
     account.setState("active");
-    account.setBalance(balance.doubleValue());
+    account.setBalance(balance);
 
     AccountDao.create(account);
 

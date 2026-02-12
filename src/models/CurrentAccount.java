@@ -13,7 +13,7 @@ public class CurrentAccount extends Account {
     String state,
     int clientId,
     int id,
-    Number overdraftLimit
+    int overdraftLimit
   ) {
     super(
       ownerFirstName,
