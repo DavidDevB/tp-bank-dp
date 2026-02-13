@@ -40,11 +40,11 @@ public class Client {
     this.lastName = lastName;
   }
 
-  public String getbirthDate() {
+  public Date getbirthDate() {
     return birthDate;
   }
 
-  public void setbirthDate(String birthDate) {
+  public void setbirthDate(Date birthDate) {
     this.birthDate = birthDate;
   }
 
@@ -62,13 +62,5 @@ public class Client {
 
   public void setAddress(String address) {
     this.address = address;
-  }
-
-  public withdrawal() {
-    // Implement withdrawal logic here
-  }
-
-  public deposit() {
-    // Implement deposit logic here
   }
 }
