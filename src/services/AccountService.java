@@ -56,4 +56,28 @@ public class AccountService {
       AccountDao.update(account);
     }
   }
+
+  public void unfreezeAccount(int accountId) {
+    Account account = AccountDao.read(accountId);
+    if (account != null) {
+      account.setState("active");
+      AccountDao.update(account);
+    }
+  }
+
+  public void deposit(int accountId, double amount) {
+    Account account = AccountDao.read(accountId);
+    if (account != null && account.getState().equals("active")) {
+      account.setBalance(account.getBalance() + amount);
+      AccountDao.update(account);
+    }
+  }
+
+  public void withdraw(int accountId, double amount) {
+    Account account = AccountDao.read(accountId);
+    if (account != null && account.getState().equals("active")) {
+      account.setBalance(account.getBalance() - amount);
+      AccountDao.update(account);
+    }
+  }
 }
